@@ -23,8 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="#FFFFFF"
-                android:horizontalSpacing="3dp"
-                android:verticalSpacing="3dp" />
+                android:horizontalSpacing="2dp"
+                android:verticalSpacing="2dp" />
         </RelativeLayout>
 
         <!--工具栏-->

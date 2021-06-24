@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.style.LineHeightSpan;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -27,38 +29,44 @@ public class MainActivity extends AppCompatActivity {
     private List<FindBondBean> mDatas;
     private GridView gridView;
     private FindBondAdapter<FindBondBean> findBondAdapter;
-    TextView textView;
+    private TextView textView;
 
     private int[][] code; // 地图
     private Random random = new Random();
 
     private int new_line = 9; // 初始值——行
-    private int new_list = 5; // 列
+    private int new_list = 2; // 列
     private int[] bx = {0, 0, 1, 1, 1, -1, -1, -1};
     private int[] by = {1, -1, 0, 1, -1, 0, 1, -1};
-    private int choose;
+    private final int length_of_side = 25 + 2; // 格子的边长加上间距
+
+    private int in_num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gridView = findViewById(R.id.main_gv_matrix);
+
         mDatas = new ArrayList<>();
-        gridView.setNumColumns(new_list);
         UpdateMap();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, "你点击了" + position, Toast.LENGTH_SHORT).show();
-                textView =(TextView) view.findViewById(R.id.item_block_iv_picture);
-                textView.setBackgroundResource(R.mipmap.square1);
+                in_num = position;
+                textView = (TextView) view.findViewById(R.id.item_block_iv_picture);
+                textView.setBackgroundResource(R.mipmap.square3);
             }
         });
     }
 
-
     private void UpdateMap() {
         /*重置地图函数：*/
+        // 绘制游戏布局
+        gridView = findViewById(R.id.main_gv_matrix);
+        gridView.setNumColumns(new_list);
+        gridView.setColumnWidth(length_of_side*new_list);
+
         // 随机生成炸弹
         code = new int[new_line][new_list];
         int bombNum = new_line; // 炸弹数量
