@@ -9,11 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--游戏界面-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#BABABA">
+            <ImageView
+                android:id="@+id/main_iv_refresh"
+                android:layout_width="60dp"
+
+                android:layout_height="60dp"
+                android:src="@drawable/refresh" />
+        </androidx.appcompat.widget.Toolbar>
+
+
         <RelativeLayout
             android:id="@+id/main_rl_under"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/main_rl_toolbar"
             android:layout_marginBottom="3dp"
             android:background="#f2f2f2">
 
@@ -25,16 +38,6 @@
                 android:background="#FFFFFF"
                 android:horizontalSpacing="2dp"
                 android:verticalSpacing="2dp" />
-        </RelativeLayout>
-
-        <!--工具栏-->
-        <RelativeLayout
-            android:id="@+id/main_rl_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:background="#FFEDED">
-
         </RelativeLayout>
 
     </RelativeLayout>
